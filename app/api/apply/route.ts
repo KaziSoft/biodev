@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectMongo from '@/lib/mongoose';
 import JobApplication from '@/models/JobApplication';
-import JobPosition from '@/models/JobPosition'; // Required for populate()
+import JobPosition from '@/models/JobPosition'; // required for populate
 
 // GET all applications
 export async function GET() {
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Optional duplicate check
+    // optional duplicate check
     const existing = await JobApplication.findOne({ email, jobId });
     if (existing) {
       return NextResponse.json(

@@ -7,12 +7,13 @@ import JobPosition from '@/models/JobPosition';
 // GET a single application
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectMongo();
+    const { id } = await context.params;
 
-    const application = await JobApplication.findById(params.id).populate('jobId');
+    const application = await JobApplication.findById(id).populate('jobId');
     if (!application) {
       return NextResponse.json(
         { success: false, error: 'Application not found' },
@@ -33,12 +34,13 @@ export async function GET(
 // DELETE an application
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectMongo();
+    const { id } = await context.params;
 
-    const deleted = await JobApplication.findByIdAndDelete(params.id);
+    const deleted = await JobApplication.findByIdAndDelete(id);
     if (!deleted) {
       return NextResponse.json(
         { success: false, error: 'Application not found' },
