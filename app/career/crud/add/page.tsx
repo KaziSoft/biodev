@@ -114,7 +114,7 @@ export default function AddJobPage() {
                             <div className="flex justify-end space-x-4 pt-4">
                                 <button
                                     type="button"
-                                    onClick={() => router.push('/admin/jobs')}
+                                    onClick={() => router.push('/career/crud')}
                                     className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
                                     disabled={uploading}
                                 >
