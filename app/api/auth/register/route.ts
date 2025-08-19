@@ -5,7 +5,7 @@ import User from '@/models/User';
 
 export async function POST(req: Request) {
   try {
-    await connectMongo(); // Ensure MongoDB is connected
+    await connectMongo(); 
 
     const { name, email, password } = await req.json();
 
