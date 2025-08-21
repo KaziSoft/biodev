@@ -13,9 +13,9 @@ const images = [
 ];
 
 const iconLinks = [
-  { href: '/project-status/ongoing', src: '/img/icons/home-icon.svg', alt: 'Category 1', label: 'Residential' },
-  { href: '/project-status/completed', src: '/img/icons/building-icon.svg', alt: 'Category 2', label: 'Commercial' },
-  { href: '/project-status/upcoming', src: '/img/icons/location-icon.svg', alt: 'Category 3', label: 'Landowner' },
+  { href: '/projectcat-status/residential', src: '/img/icons/home-icon.svg', alt: 'Category 1', label: 'Residential' },
+  { href: '/projectcat-status/commercial', src: '/img/icons/building-icon.svg', alt: 'Category 2', label: 'Commercial' },
+  { href: '/projectcat-status/landowner', src: '/img/icons/location-icon.svg', alt: 'Category 3', label: 'Landowner' },
 ];
 
 type NavigationDirection = 'prev' | 'next';
