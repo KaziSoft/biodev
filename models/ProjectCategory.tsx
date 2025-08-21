@@ -33,4 +33,4 @@ const ProjectCategorySchema = new Schema<IProjectCategory>({
     image: { type: String, required: true },
 }, { timestamps: true });
 
-export const Project = models.Project || model<IProjectCategory>('Project', ProjectCategorySchema);
+export const Project = models.ProjectCategory || model<IProjectCategory>('ProjectCategory', ProjectCategorySchema);

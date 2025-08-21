@@ -276,7 +276,7 @@ export default function ProjectCatogoryStatusViewPage() {
                         )}
                       </div>
                     )}
-                    <Link href={`/projects/${project._id}`}>
+                    <Link href={`/projects-category/${project._id}`}>
                       <button className="w-full mt-2 px-4 py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 font-medium rounded-lg transition-colors border border-gray-200 flex items-center justify-center">
                         View Details
                         <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
