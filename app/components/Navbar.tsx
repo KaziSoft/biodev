@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { FiPhone } from "react-icons/fi";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -51,7 +50,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-lg fixed w-full z-80">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16 gap-4">
+        <div className="flex items-center justify-between h-24 gap-4">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-xl font-bold text-gray-800">
@@ -60,15 +59,9 @@ export default function Navbar() {
                 alt="logo"
                 height={100}
                 width={100}
-                className="h-16 w-auto"
+                className="w-24 h-auto"
               />
             </Link>
-          </div>
-
-          {/* Contact Number (Visible on md and up) */}
-          <div className="hidden md:flex items-center gap-2 text-[#7AA859] font-semibold text-lg">
-            <FiPhone className="text-xl" />
-            <span>+880 17 51 51 12 12</span>
           </div>
 
           {/* Hamburger Menu Button */}
@@ -110,86 +103,92 @@ export default function Navbar() {
       {isDesktop && (
         <div
           ref={menuRef}
-          className={`fixed top-16 right-0 w-1/2 bg-white shadow-lg transform transition-transform duration-500 ease-in-out ${
+          className={`fixed top-0 right-0 min-h-screen w-80 bg-white shadow-lg transform transition-transform duration-500 ease-in-out ${
             isOpen
               ? "translate-y-0 opacity-100 pointer-events-auto"
               : "-translate-y-10 opacity-0 pointer-events-none"
           }`}
         >
-          <div className="max-w-7xl mx-auto px-4 py-4 flex">
-            <div className="w-1/2 pr-8 space-y-4">
-              <Link
-                href="/"
-                onClick={() => setIsOpen(false)}
-                className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]"
+          {/* Close Button */}
+          <div className="flex justify-center p-4 pt-48">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-gray-700 hover:text-red-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                HOME
-              </Link>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
 
-              {/* About */}
-              <div className="relative">
-                <button
-                  onClick={() => toggleSubmenu("about")}
-                  className="flex items-center gap-1 text-lg font-medium text-gray-800 hover:text-[#7AA859]"
-                >
-                  ABOUT US{" "}
-                  {openSubmenu === "about" ? (
-                    <FaChevronUp className="text-sm" />
-                  ) : (
-                    <FaChevronDown className="text-sm" />
-                  )}
-                </button>
-                {openSubmenu === "about" && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    <Link href="/story" onClick={() => setIsOpen(false)} className="block text-xl text-gray-700 hover:text-[#7AA859]">Our Story</Link>
-                    <Link href="/bod" onClick={() => setIsOpen(false)} className="block text-xl text-gray-700 hover:text-[#7AA859]">Board of Directors</Link>
-                    <Link href="/mission-vision" onClick={() => setIsOpen(false)} className="block text-xl text-gray-700 hover:text-[#7AA859]">Mission and Vision</Link>
-                    <Link href="/clients" onClick={() => setIsOpen(false)} className="block text-xl text-gray-700 hover:text-[#7AA859]">Our Clients</Link>
-                  </div>
+          <div className="px-8 py-10 space-y-4 ">
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]"
+            >
+              HOME
+            </Link>
+
+            {/* About */}
+            <div className="relative">
+              <button
+                onClick={() => toggleSubmenu("about")}
+                className="flex items-center gap-1 text-lg font-medium text-gray-800 hover:text-[#7AA859]"
+              >
+                ABOUT US{" "}
+                {openSubmenu === "about" ? (
+                  <FaChevronUp className="text-sm" />
+                ) : (
+                  <FaChevronDown className="text-sm" />
                 )}
-              </div>
-
-              {/* Projects */}
-              <div className="relative">
-                <button
-                  onClick={() => toggleSubmenu("projects")}
-                  className="flex items-center gap-1 text-lg font-medium text-gray-800 hover:text-[#7AA859]"
-                >
-                  PROJECTS{" "}
-                  {openSubmenu === "projects" ? (
-                    <FaChevronUp className="text-sm" />
-                  ) : (
-                    <FaChevronDown className="text-sm" />
-                  )}
-                </button>
-                {openSubmenu === "projects" && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    <Link href="/project-status/ongoing" onClick={() => setIsOpen(false)} className="block text-xl text-gray-700 hover:text-[#7AA859]">Ongoing Project</Link>
-                    <Link href="/project-status/completed" onClick={() => setIsOpen(false)} className="block text-xl text-gray-700 hover:text-[#7AA859]">Completed Project</Link>
-                    <Link href="/project-status/upcoming" onClick={() => setIsOpen(false)} className="block text-xl text-gray-700 hover:text-[#7AA859]">Upcoming Projects</Link>
-                  </div>
-                )}
-              </div>
-
-              <Link href="/news-events" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]">NEWS & EVENTS</Link>
-              <Link href="/career" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]">CAREER</Link>
-              <Link href="/contact" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]">CONTACT</Link>
+              </button>
+              {openSubmenu === "about" && (
+                <div className="mt-2 ml-4 space-y-2">
+                  <Link href="/story" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Our Story</Link>
+                  <Link href="/bod" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Board of Directors</Link>
+                  <Link href="/mission-vision" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Mission and Vision</Link>
+                  <Link href="/clients" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Our Clients</Link>
+                </div>
+              )}
             </div>
 
-            {/* Divider */}
-            <div className="border-l border-gray-200 h-auto mx-4"></div>
-
-            {/* Right Column */}
-            <div className="w-1/2 pl-8 space-y-4">
-              <div>
-                <h3 className="text-lg font-medium text-gray-800">Hotline:</h3>
-                <p className="text-gray-700 text-xl font-semibold">16594</p>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium text-gray-800">Cell/WhatsApp:</h3>
-                <p className="text-gray-700 text-xl font-semibold">+88017 51 51 12 12</p>
-              </div>
+            {/* Projects */}
+            <div className="relative">
+              <button
+                onClick={() => toggleSubmenu("projects")}
+                className="flex items-center gap-1 text-lg font-medium text-gray-800 hover:text-[#7AA859]"
+              >
+                PROJECTS{" "}
+                {openSubmenu === "projects" ? (
+                  <FaChevronUp className="text-sm" />
+                ) : (
+                  <FaChevronDown className="text-sm" />
+                )}
+              </button>
+              {openSubmenu === "projects" && (
+                <div className="mt-2 ml-4 space-y-2">
+                  <Link href="/project-status/ongoing" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Ongoing Project</Link>
+                  <Link href="/project-status/completed" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Completed Project</Link>
+                  <Link href="/project-status/upcoming" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Upcoming Projects</Link>
+                </div>
+              )}
             </div>
+
+            <Link href="/news-events" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]">NEWS & EVENTS</Link>
+            <Link href="/career" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]">CAREER</Link>
+            <Link href="/contact" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]">CONTACT</Link>
           </div>
         </div>
       )}
@@ -204,6 +203,29 @@ export default function Navbar() {
               : "-translate-y-10 opacity-0 pointer-events-none"
           }`}
         >
+          {/* Close Button */}
+          {/* <div className="flex justify-end p-4">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-gray-700 hover:text-red-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div> */}
+
           <div className="px-4 py-4 space-y-4">
             <Link href="/" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]">HOME</Link>
 
@@ -219,10 +241,10 @@ export default function Navbar() {
               </button>
               {openSubmenu === "about" && (
                 <div className="mt-2 ml-4 space-y-2">
-                  <Link href="/story" className="block text-lg text-gray-700 hover:text-[#7AA859]">Our Story</Link>
-                  <Link href="/bod" className="block text-lg text-gray-700 hover:text-[#7AA859]">Board of Directors</Link>
-                  <Link href="/mission-vision" className="block text-lg text-gray-700 hover:text-[#7AA859]">Mission and Vision</Link>
-                  <Link href="/clients" className="block text-lg text-gray-700 hover:text-[#7AA859]">Our Clients</Link>
+                  <Link href="/story" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Our Story</Link>
+                  <Link href="/bod" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Board of Directors</Link>
+                  <Link href="/mission-vision" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Mission and Vision</Link>
+                  <Link href="/clients" onClick={() => setIsOpen(false)} className="block text-lg text-gray-700 hover:text-[#7AA859]">Our Clients</Link>
                 </div>
               )}
             </div>
@@ -249,14 +271,6 @@ export default function Navbar() {
             <Link href="/news-events" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]">NEWS & EVENTS</Link>
             <Link href="/career" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]">CAREER</Link>
             <Link href="/contact" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-800 hover:text-[#7AA859]">CONTACT</Link>
-
-            <div className="pt-4 border-t border-gray-200 mt-4">
-              <h3 className="text-lg font-medium text-gray-800">Hotline:</h3>
-              <p className="text-gray-700 text-xl font-semibold">16594</p>
-
-              <h3 className="text-lg font-medium text-gray-800 mt-3">International Callers:</h3>
-              <p className="text-gray-700 text-xl font-semibold">+880 9612-111444</p>
-            </div>
           </div>
         </div>
       )}
