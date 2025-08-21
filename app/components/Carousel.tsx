@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FiPhone } from "react-icons/fi";
 import { FaCircleArrowLeft, FaCircleArrowRight } from 'react-icons/fa6';
 
 const images = [
@@ -12,9 +13,9 @@ const images = [
 ];
 
 const iconLinks = [
-  { href: '/project-status/ongoing', src: '/img/icons/category1.svg', alt: 'Category 1', label: 'Ongoing' },
-  { href: '/project-status/completed', src: '/img/icons/category2.svg', alt: 'Category 2', label: 'Completed' },
-  { href: '/project-status/upcoming', src: '/img/icons/category3.svg', alt: 'Category 3', label: 'Upcoming' },
+  { href: '/project-status/ongoing', src: '/img/icons/home-icon.svg', alt: 'Category 1', label: 'Residential' },
+  { href: '/project-status/completed', src: '/img/icons/building-icon.svg', alt: 'Category 2', label: 'Commercial' },
+  { href: '/project-status/upcoming', src: '/img/icons/location-icon.svg', alt: 'Category 3', label: 'Landowner' },
 ];
 
 type NavigationDirection = 'prev' | 'next';
@@ -41,8 +42,8 @@ export default function Slider() {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setTimeout(() => {
-      setCurrent((prev) => direction === 'next' 
-        ? (prev + 1) % length 
+      setCurrent((prev) => direction === 'next'
+        ? (prev + 1) % length
         : (prev - 1 + length) % length
       );
       setIsTransitioning(false);
@@ -57,11 +58,10 @@ export default function Slider() {
         {images.map((src, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-all duration-[5000ms] ease-in-out ${
-              index === current 
-                ? 'opacity-100 z-10 scale-100' 
+            className={`absolute inset-0 transition-all duration-[5000ms] ease-in-out ${index === current
+                ? 'opacity-100 z-10 scale-100'
                 : 'opacity-0 z-0 scale-150'
-            }`}
+              }`}
           >
             <Image
               src={src}
@@ -76,18 +76,16 @@ export default function Slider() {
         {/* Arrows */}
         <button
           onClick={() => handleNavigation('prev')}
-          className={`absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-3xl z-40 hover:scale-110 transition-transform ${
-            isTransitioning ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
+          className={`absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-3xl z-40 hover:scale-110 transition-transform ${isTransitioning ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
           disabled={isTransitioning}
         >
           <FaCircleArrowLeft />
         </button>
         <button
           onClick={() => handleNavigation('next')}
-          className={`absolute top-1/2 right-4 transform -translate-y-1/2 text-white text-3xl z-40 hover:scale-110 transition-transform ${
-            isTransitioning ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
+          className={`absolute top-1/2 right-4 transform -translate-y-1/2 text-white text-3xl z-40 hover:scale-110 transition-transform ${isTransitioning ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
           disabled={isTransitioning}
         >
           <FaCircleArrowRight />
@@ -99,9 +97,8 @@ export default function Slider() {
             <div
               key={index}
               onClick={() => setCurrent(index)}
-              className={`cursor-pointer rounded-md border-5 transition duration-300 ${
-                current === index ? 'border-[#fff]' : 'border-transparent'
-              }`}
+              className={`cursor-pointer rounded-md border-5 transition duration-300 ${current === index ? 'border-[#fff]' : 'border-transparent'
+                }`}
             >
               <Image
                 src={src}
@@ -119,7 +116,11 @@ export default function Slider() {
           {/* Desktop version */}
           <div className="hidden md:flex absolute inset-0 bg-black/20 items-center px-10 z-50">
             <div className="text-white text-3xl font-poppins w-1/3">
-              Explore Our Projects
+              {/* Contact Number (Visible on md and up) */}
+              <div className="hidden md:flex items-center gap-2 text-white font-semibold text-xl">
+                <FiPhone className="text-xl" />
+                <span>+880 17 51 51 12 12</span>
+              </div>
             </div>
 
             <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-10">
@@ -136,7 +137,7 @@ export default function Slider() {
                     height={60}
                     className="transition-transform duration-300 group-hover:scale-110"
                   />
-                  <span className="mt-1 text-sm">{icon.label}</span>
+                  <span className="mt-1 text-lg">{icon.label}</span>
                 </Link>
               ))}
             </div>
@@ -145,7 +146,7 @@ export default function Slider() {
           {/* Mobile version */}
           <div className="flex md:hidden flex-col items-center justify-center absolute inset-0 bg-black/40 backdrop-blur-md px-4 py-3 gap-3 z-50">
             <div className="text-white text-lg font-semibold text-center">
-              Explore Our Categories
+              +880 17 51 51 12 12
             </div>
             <div className="flex gap-8">
               {iconLinks.map((icon, idx) => (
