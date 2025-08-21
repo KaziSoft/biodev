@@ -155,7 +155,7 @@ const ViewProjectsPage: React.FC = () => {
 
   return (
     <section className="container mx-auto px-3 flex flex-col max-w-7xl gap-10 w-full justify-center mt-20 overflow-hidden">
-      <h1 className="text-3xl text-center font-poppins text-gray-700">Turning Ordinary Into Extraordinary!</h1>
+      <h1 className="text-3xl text-center font-semibold font-poppins text-gray-700">Turning Ordinary Into Extraordinary!</h1>
 
       <div className="relative w-full overflow-hidden" ref={containerRef}>
         {showArrows && (
