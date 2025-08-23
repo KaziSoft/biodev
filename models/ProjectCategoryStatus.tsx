@@ -22,4 +22,4 @@ const ProjectCategoryStatusSchema = new Schema<IProjectCategoryStatus>(
   { timestamps: true }
 );
 
-export default models.ProjectStatus || model<IProjectCategoryStatus>('ProjectStatus', ProjectCategoryStatusSchema);
+export default models.ProjectCategoryStatus || model<IProjectCategoryStatus>('ProjectCategoryStatus', ProjectCategoryStatusSchema);

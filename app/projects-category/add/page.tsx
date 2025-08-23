@@ -62,9 +62,10 @@ const AddProjectCategoryPage = () => {
     try {
       const formData = new FormData();
       const baseName = imageFile.name.split('.')[0];
+      const timestamp = Date.now();
       formData.append('file', imageFile);
       formData.append('upload_preset', 'biobuild');
-      formData.append('public_id', `projects-category/${baseName}`);
+      formData.append('public_id', `projects-category/${baseName}_${timestamp}`);
 
       const cloudinaryRes = await fetch('https://api.cloudinary.com/v1_1/dytpebngy/image/upload', {
         method: 'POST',
@@ -99,10 +100,10 @@ const AddProjectCategoryPage = () => {
 
       if (!res.ok) {
         const errData = await res.json();
-        throw new Error(errData.message || 'Failed to create project');
+        throw new Error(errData.message || 'Failed to create project category');
       }
 
-      setMessage({ text: 'Project added successfully!', type: 'success' });
+      setMessage({ text: 'Project category added successfully!', type: 'success' });
 
       setTitle('');
       setHoverTitle('');
@@ -117,7 +118,7 @@ const AddProjectCategoryPage = () => {
       setImageFile(null);
       setImagePreview('');
 
-      setTimeout(() => router.push('/projects/crud'), 1500);
+      setTimeout(() => router.push('/projects-category/crud'), 1500);
     } catch (err: any) {
       console.error('Error:', err);
       setMessage({ text: err.message || 'Something went wrong', type: 'error' });
@@ -137,7 +138,7 @@ const AddProjectCategoryPage = () => {
               <FiArrowLeft className="mr-2" />
               Back
             </button>
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">Add Project</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">Add Project Category</h1>
           </div>
 
           {message && (
@@ -178,7 +179,7 @@ const AddProjectCategoryPage = () => {
 
               {/* status */}
               <div>
-                <label htmlFor="status" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
+                <label htmlFor="status" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Category Type</label>
                 <select
                   id="status"
                   value={status}
@@ -267,14 +268,14 @@ const AddProjectCategoryPage = () => {
               )}
 
               <div className="flex justify-end gap-4 pt-4">
-                <button type="button" onClick={() => router.push('/projects')} disabled={loading}
+                <button type="button" onClick={() => router.push('/projects-category')} disabled={loading}
                   className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                   Cancel
                 </button>
                 <button type="submit" disabled={loading}
                   className="flex items-center px-4 py-2 bg-[#7AA859] hover:bg-green-700 text-white rounded-lg disabled:opacity-50">
                   <FiSave className="mr-2" />
-                  {loading ? 'Saving...' : 'Save Project'}
+                  {loading ? 'Saving...' : 'Save Project Category'}
                 </button>
               </div>
             </form>

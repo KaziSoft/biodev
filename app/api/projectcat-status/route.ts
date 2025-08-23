@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectMongo from '@/lib/mongoose';
-import { Project } from '@/models/ProjectCategory';
+import { ProjectCategory } from '@/models/ProjectCategory';
 
 export async function GET(req: NextRequest) {
   try {
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid or missing status' }, { status: 400 });
     }
 
-    const projects = await Project.find({ status });
+    const projects = await ProjectCategory.find({ status });
 
     return NextResponse.json(projects, { status: 200 });
   } catch (error) {

@@ -1,4 +1,3 @@
-//models/ProjectCategory
 import mongoose, { Schema, model, models, Document } from 'mongoose';
 
 export interface IProjectCategory extends Document {
@@ -33,4 +32,4 @@ const ProjectCategorySchema = new Schema<IProjectCategory>({
     image: { type: String, required: true },
 }, { timestamps: true });
 
-export const Project = models.ProjectCategory || model<IProjectCategory>('ProjectCategory', ProjectCategorySchema);
+export const ProjectCategory = models.ProjectCategory || model<IProjectCategory>('ProjectCategory', ProjectCategorySchema);

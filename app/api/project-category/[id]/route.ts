@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectMongo from '@/lib/mongoose';
-import { Project } from '@/models/ProjectCategory';
+import { ProjectCategory } from '@/models/ProjectCategory';
 
 export async function GET(_: NextRequest, { params }: { params: any }) {
   try {
     await connectMongo();
-    const project = await Project.findById(params.id);
+    const project = await ProjectCategory.findById(params.id);
     if (!project) return NextResponse.json({ message: 'Project not found' }, { status: 404 });
     return NextResponse.json(project);
   } catch (error) {
@@ -18,7 +18,7 @@ export async function PATCH(req: NextRequest, { params }: { params: any }) {
   try {
     await connectMongo();
     const updates = await req.json();
-    const updatedProject = await Project.findByIdAndUpdate(params.id, updates, { new: true });
+    const updatedProject = await ProjectCategory.findByIdAndUpdate(params.id, updates, { new: true });
     if (!updatedProject) return NextResponse.json({ message: 'Project not found' }, { status: 404 });
     return NextResponse.json(updatedProject);
   } catch (error) {
@@ -30,7 +30,7 @@ export async function PATCH(req: NextRequest, { params }: { params: any }) {
 export async function DELETE(_: NextRequest, { params }: { params: any }) {
   try {
     await connectMongo();
-    const deleted = await Project.findByIdAndDelete(params.id);
+    const deleted = await ProjectCategory.findByIdAndDelete(params.id);
     if (!deleted) return NextResponse.json({ message: 'Project not found' }, { status: 404 });
     return NextResponse.json({ message: 'Project deleted successfully' });
   } catch (error) {
