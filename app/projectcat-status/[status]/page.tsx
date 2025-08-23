@@ -21,7 +21,7 @@ const ContentLoader = () => {
     <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-xl">
       <div className="flex flex-col items-center">
         <div className="relative h-12 w-12">
-          <div className="absolute inset-0 rounded-full border-2 border-t-green-500 border-r-green-500 border-b-transparent border-l-transparent animate-spin"></div>
+          <div className="absolute inset-0 rounded-full border-2 border-t-[#7AA859] border-r-[#7AA859] border-b-transparent border-l-transparent animate-spin"></div>
           <div className="absolute inset-1 rounded-full border-2 border-t-green-600 border-r-green-600 border-b-transparent border-l-transparent animate-spin animation-delay-200"></div>
         </div>
         <p className="mt-3 text-gray-600 text-sm font-medium">Loading projects...</p>
