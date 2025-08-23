@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import { FaBars, FaTimes, FaHome, FaUser, FaNewspaper, FaSignOutAlt, FaMapMarkerAlt, FaFileInvoice, FaLock, FaChartLine,FaBlogger } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHome, FaUser, FaNewspaper, FaSignOutAlt, FaMapMarkerAlt, FaFileInvoice, FaLock, FaChartLine,FaBlogger, FaBlackberry } from 'react-icons/fa';
 import axios from 'axios';
 import Image from 'next/image';
 
@@ -136,6 +136,15 @@ const Dashboard: React.FC = () => {
                             >
                                 <FaMapMarkerAlt className="text-lg mr-3" />
                                 <span className="font-medium">Projects</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                href="/projects-category/crud" 
+                                className={`flex items-center p-3 rounded-lg transition-all ${pathname.includes('/projects-category') ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}
+                            >
+                                <FaBlackberry className="text-lg mr-3" />
+                                <span className="font-medium">Category</span>
                             </Link>
                         </li>
                         <li>
