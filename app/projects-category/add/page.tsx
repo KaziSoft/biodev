@@ -138,7 +138,7 @@ const AddProjectCategoryPage = () => {
               <FiArrowLeft className="mr-2" />
               Back
             </button>
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">Add Project Category</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">Project Category</h1>
           </div>
 
           {message && (
